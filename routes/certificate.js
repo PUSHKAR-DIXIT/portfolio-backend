@@ -43,14 +43,15 @@ router.post("/", upload.single("image"), async (req, res) => {
 
     const newCert = new Certificate({
       title: req.body.title,
-      image: `public/uploads/${req.file.filename}`,
+     image: `uploads/${req.file.filename}`,
+
     });
 
     await newCert.save();
     res.json(newCert);
   } catch (err) {
     console.log("UPLOAD ERROR:", err);
-    res.status(500).json({ error: err.message });
+    res.status(300).json({ error: err.message });
   }
 });
 
